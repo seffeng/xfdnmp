@@ -21,7 +21,7 @@
     ins_mysql        [1-安装mysql]
     ins_php          [1-安装php]
     ins_pureftpd     [1-安装ftp]
-    ins_reids        [1-安装reids]
+    ins_redis        [1-安装redis]
     ins_subversion   [1-安装svn]
     ins_php_memcache [1-安装php_memcache]
     ins_memcached    [1-安装memcached]
