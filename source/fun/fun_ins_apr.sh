@@ -15,7 +15,7 @@ function fun_ins_apr(){
     ##依次命令
     apr_shl=(
         "cd ${url_software_base}"
-        "tar zxf ${apr_pack_name}"
+        "tar jxf ${apr_pack_name}"
         "cd ${apr_pack_folder}"
         "./configure --prefix=${apr_ins_prefix}"
         "make"

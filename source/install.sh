@@ -99,6 +99,7 @@ ins_apr=0;
 ins_apr_util=0;
 ins_bzip2=0;
 ins_cmake=0;
+ins_scons=0;
 ins_libmcrypt=0;
 ins_libmemcached=0;
 ins_mcrypt=0;
@@ -113,57 +114,63 @@ ins_php_memcache=0;
 ins_pureftpd=0;
 ins_redis=0;
 ins_sqlite=0;
+ins_serf=0;
 ins_subversion=0;
 ins_zlib=0;
 is_debug=1;    #是否调试模式[1-是,0-否]
 
 ##软件名称和源码路径,更新软件版本时修改此处-------------------------------------
-apr_pack_name="apr-1.5.1.tar.gz";
-apr_pack_folder="apr-1.5.1";
-apr_util_pack_name="apr-util-1.5.4.tar.bz2";
+apr_pack_folder="apr-1.5.2";
+apr_pack_name="${apr_pack_folder}.tar.bz2";
 apr_util_pack_folder="apr-util-1.5.4";
-bzip2_pack_name="bzip2-1.0.6.tar.gz";
+apr_util_pack_name="${apr_util_pack_folder}.tar.bz2";
 bzip2_pack_folder="bzip2-1.0.6";
-cmake_pack_name="cmake-3.2.1.tar.gz";
-cmake_pack_folder="cmake-3.2.1";
-libmcrypt_pack_name="libmcrypt-2.5.8.tar.gz";
+bzip2_pack_name="${bzip2_pack_folder}.tar.gz";
+cmake_pack_folder="cmake-3.4.1";
+cmake_pack_name="${cmake_pack_folder}.tar.gz";
+scons_pack_folder="scons-local-2.4.1";
+scons_pack_name="${scons_pack_folder}.tar.gz";
 libmcrypt_pack_folder="libmcrypt-2.5.8";
-libmemcached_pack_name="libmemcached-1.0.18.tar.gz";
+libmcrypt_pack_name="${libmcrypt_pack_folder}.tar.gz";
 libmemcached_pack_folder="libmemcached-1.0.18";
-mcrypt_pack_name="mcrypt-2.6.8.tar.gz";
+libmemcached_pack_name="${libmemcached_pack_folder}.tar.gz";
 mcrypt_pack_folder="mcrypt-2.6.8";
-memcache_pack_name="memcached-1.4.24.tar.gz";
-memcache_pack_folder="memcached-1.4.24";
-mhash_pack_name="mhash-0.9.9.9.tar.gz";
+mcrypt_pack_name="${mcrypt_pack_folder}.tar.gz";
+memcache_pack_folder="memcached-1.4.25";
+memcache_pack_name="${memcache_pack_folder}.tar.gz";
 mhash_pack_folder="mhash-0.9.9.9";
-mysql_pack_name="mysql-5.5.46.tar.gz";
-mysql_pack_folder="mysql-5.5.46";
-nginx_pack_name="nginx-1.8.0.tar.gz";
+mhash_pack_name="${mhash_pack_folder}.tar.gz";
+mysql_pack_folder="mysql-5.5.47";
+mysql_pack_name="${mysql_pack_folder}.tar.gz";
 nginx_pack_folder="nginx-1.8.0";
-openssl_pack_name="openssl-1.0.2d.tar.gz";
-openssl_pack_folder="openssl-1.0.2d";
-pcre_pack_name="pcre-8.37.tar.bz2";
-pcre_pack_folder="pcre-8.37";
-php_pack_name="php-5.6.14.tar.bz2";
-php_pack_folder="php-5.6.14";
-php_memcache_pack_name="memcache-3.0.8.tgz";
+nginx_pack_name="${nginx_pack_folder}.tar.gz";
+openssl_pack_folder="openssl-1.0.2e";
+openssl_pack_name="${openssl_pack_folder}.tar.gz";
+pcre_pack_folder="pcre-8.38";
+pcre_pack_name="${pcre_pack_folder}.tar.bz2";
+php_pack_folder="php-7.0.2";
+php_pack_name="${php_pack_folder}.tar.bz2";
 php_memcache_pack_folder="memcache-3.0.8";
-pureftpd_pack_name="pure-ftpd-1.0.36.tar.bz2";
+php_memcache_pack_name="${php_memcache_pack_folder}.tgz";
 pureftpd_pack_folder="pure-ftpd-1.0.36";
-redis_pack_name="redis-3.0.5.tar.gz";
-redis_pack_folder="redis-3.0.5";
-sqlite_pack_name="sqlite-autoconf-3080900.tar.gz";
-sqlite_pack_folder="sqlite-autoconf-3080900";
-subversion_pack_name="subversion-1.8.13.tar.bz2";
-subversion_pack_folder="subversion-1.8.13";
-zlib_pack_name="zlib-1.2.8.tar.gz";
+pureftpd_pack_name="${pureftpd_pack_folder}.tar.bz2";
+redis_pack_folder="redis-3.0.6";
+redis_pack_name="${redis_pack_folder}.tar.gz";
+sqlite_pack_folder="sqlite-autoconf-3090200";
+sqlite_pack_name="${sqlite_pack_folder}.tar.gz";
+serf_pack_folder="serf-1.3.8";
+serf_pack_name="${serf_pack_folder}.tar.bz2";
+subversion_pack_folder="subversion-1.8.15";
+subversion_pack_name="${subversion_pack_folder}.tar.bz2";
 zlib_pack_folder="zlib-1.2.8";
+zlib_pack_name="${zlib_pack_folder}.tar.gz";
+
 
 ##------------------------------------------------------------------------------
 println "********************************************************************************" yellow;
 println "CONFIGURE DEBIAN SERVER";
 println "********************************************************************************\n" yellow;
-shl_cmd="apt-get -y install gcc g++ make automake autoconf";
+shl_cmd="apt-get -y install gcc g++ make automake autoconf bzip2";
 url_software_base="/srv/websrv/source/";        ## 安装程序路径
 url_install_base="/srv/websrv/program/";        ## 安装结果路径
 url_config_base="/srv/websrv/config/";          ## 配置文件路径
@@ -192,7 +199,16 @@ fi
 if [ 1 = $ins_subversion ]; then
 ins_apr=1;
 ins_apr_util=1;
+ins_scons=1;
 ins_sqlite=1;
+ins_serf=1;
+fi
+
+if [ 1 = $ins_serf ]; then
+ins_apr=1;
+ins_apr_util=1;
+ins_scons=1;
+ins_openssl=1;
 fi
 
 if [ 1 = $help ]; then
@@ -226,11 +242,6 @@ println "mkdir -p $url_data_base" purple;
 println "mkdir -p $url_path_base" purple;
 println "mkdir -p ${url_path_base}tmp ${url_path_base}logs" purple;
 println "chmod 777 ${url_path_base}tmp ${url_path_base}logs" purple;
-fi
-#安装BZIP2
-if [ 1 = $ins_bzip2 ]; then
-. ${url_software_base}fun/fun_ins_bzip2.sh;
-fun_ins_bzip2;
 fi
 #安装CMAKE
 if [ 1 = $ins_cmake ]; then
@@ -277,6 +288,11 @@ if [ 1 = $ins_mcrypt ]; then
 . ${url_software_base}fun/fun_ins_mcrypt.sh;
 fun_ins_mcrypt;
 fi
+#安装BZIP2
+if [ 1 = $ins_bzip2 ]; then
+. ${url_software_base}fun/fun_ins_bzip2.sh;
+fun_ins_bzip2;
+fi
 #安装PHP
 if [ 1 = $ins_php ]; then
 . ${url_software_base}fun/fun_ins_php.sh;
@@ -316,6 +332,16 @@ fi
 if [ 1 = $ins_sqlite ]; then
 . ${url_software_base}fun/fun_ins_sqlite.sh;
 fun_ins_sqlite;
+fi
+#INSTALL SCONS
+if [ 1 = $ins_scons ]; then
+. ${url_software_base}fun/fun_ins_scons.sh;
+fun_ins_scons;
+fi
+#INSTALL SERF
+if [ 1 = $ins_serf ]; then
+. ${url_software_base}fun/fun_ins_serf.sh;
+fun_ins_serf;
 fi
 #INSTALL SUBVERSION
 if [ 1 = $ins_subversion ]; then

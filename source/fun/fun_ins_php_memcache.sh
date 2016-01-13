@@ -11,7 +11,7 @@ function fun_ins_php_memcache(){
         "tar zxf ${php_memcache_pack_name}"
         "cd ${php_memcache_pack_folder}"
         "${php_ins_bin}/phpize"
-        "./configure -enable-memcache --with-php-config=${php_ins_bin}/php-config -with-zlib-dir"
+        "./configure --enable-memcache --with-php-config=${php_ins_bin}/php-config --with-zlib-dir"
         "make"
         "make install"
     );
