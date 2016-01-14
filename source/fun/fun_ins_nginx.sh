@@ -27,11 +27,11 @@ function fun_ins_nginx(){
         "tar zxf ${nginx_pack_name}"
         "cd ${nginx_pack_folder}"
         "mkdir -p ${nginx_logs_folder}"
+        "groups ${nginx_ins_user} > /dev/null 2>&1 || groupadd ${nginx_ins_group}"
+        "id ${nginx_ins_user} > /dev/null 2>&1 || useradd -M -s /sbin/nologin -g ${nginx_ins_group} ${nginx_ins_user}"
         "./configure --prefix=${nginx_ins_prefix} --with-http_ssl_module --with-http_realip_module --with-http_addition_module --with-http_sub_module --with-http_dav_module --with-http_flv_module --with-http_mp4_module --with-http_gzip_static_module --with-http_random_index_module --with-http_secure_link_module --with-http_degradation_module --with-http_stub_status_module --with-ipv6 --with-mail --with-mail_ssl_module --with-pcre=${pcre_ins_source} --with-openssl=${openssl_ins_source} --with-zlib=${zlib_ins_source} --conf-path=${nginx_confs_file} --group=${nginx_ins_group} --user=${nginx_ins_user} --error-log-path=${nginx_logs_folder}/error.log --http-log-path=${nginx_logs_folder}/access.log --pid-path=${nginx_conf_folder}/pid.txt --lock-path=${nginx_conf_folder}/lock.txt"
         "make"
         "make install"
-        "groups ${nginx_ins_user} > /dev/null 2>&1 || groupadd ${nginx_ins_group}"
-        "id ${nginx_ins_user} > /dev/null 2>&1 || useradd -M -s /sbin/nologin -g ${nginx_ins_group} ${nginx_ins_user}"
         "if [ -f "${nginx_sbin_prefix}" ] ; then (rm -rf ${nginx_sbin_prefix}) fi"
         "ln -s ${nginx_ins_prefix}/sbin/nginx ${nginx_sbin_prefix}"
     );

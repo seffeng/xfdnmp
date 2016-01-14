@@ -85,6 +85,6 @@ ln -s /usr/bin/automake /usr/bin/automake-1.15
 apt-get -y install python
 ```
 
-15、配置文件可参考此文件夹内 config/ 文件夹里的对应配置；若本程序安装路径为 /srv/websrv/ 可直接覆盖配置文件。
+######15、配置文件可参考此文件夹内 config/ 文件夹里的对应配置；若本程序安装路径为 /srv/websrv/ 可直接覆盖配置文件。
 
-16、更多版本[下载](http://pan.baidu.com/s/1eQmwv2E#path=%252Flinux%252Fweb_tool)
+######16、更多版本[下载](http://pan.baidu.com/s/1eQmwv2E#path=%252Flinux%252Fweb_tool)
