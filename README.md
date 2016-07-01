@@ -1,4 +1,4 @@
-######1、对应的文件夹名可以自行修改，本程序仅在 Debian-8.2 上测试通过。
+######1、对应的文件夹名可以自行修改，本程序仅在 Debian-8.5 上测试通过。
 
 ######2、文件夹(xfdnmp)建议放在 /srv/ 目录，并改名为 websrv ；所有配置文件关联路径为 /srv/websrv/， 若程序安装在其他目录，请自行修改相关配置文件。
 
@@ -31,10 +31,10 @@
 /srv/websrv/source/install.sh --url_software_base=/srv/websrv/source/ --url_install_base=/srv/websrv/program/ --url_config_base=/websrv/config/ --url_data_base=/srv/websrv/data/ --is_debug=0 --ins_nginx=1 --ins_mysql=1 --ins_php=1
 ```
 ######7、程序版本介绍，详细查看 /srv/websrv/source/ 下文件。
-    nginx-1.8.0
-    mysql-5.5.47
-    php-7.0.2
-    pure-ftpd-1.0.42
+    nginx-1.10.1
+    mysql-5.5.50
+    php-7.0.8
+    pure-ftpd-1.0.36
     subversion-1.8.15
 
 ######8、php-fpm.conf 文件路径默认为 /srv/websrv/config/php/php-fpm.conf 。
@@ -46,7 +46,9 @@
 ######10、memcached 启动模版：
     /srv/websrv/config/memcached/start.sh
 
-######11、mysql 用 mysqli 连接提示时 /var/run/mysqld/mysqld.sock 文件不存在：
+######11、mysql 错误：
+11.1 mysql 用 mysqli 连接提示时 /var/run/mysqld/mysqld.sock 文件不存在：
+
     修改 /etc/init.d/mysqld 文件
     在 'start') 中 exit $return_value 前增加以下内容
 ```
@@ -59,6 +61,11 @@ if test ! -e "/run/mysqld/mysqld.sock"
 then
     ln -s "$datadir/mysql.sock" "/run/mysqld/mysqld.sock"
 fi
+```
+11.2 Unit mysqld.service failed to load: No such file or directory.
+    重启系统或执行以下命令
+```
+systemctl disable mysqld.service
 ```
 
 ######12、mysql密码：root 或 空。
@@ -85,6 +92,6 @@ ln -s /usr/bin/automake /usr/bin/automake-1.15
 apt-get -y install python
 ```
 
-######15、配置文件可参考此文件夹内 config/ 文件夹里的对应配置；若本程序安装路径为 /srv/websrv/ 可直接覆盖配置文件。
+15、配置文件可参考此文件夹内 config/ 文件夹里的对应配置；若本程序安装路径为 /srv/websrv/ 可直接覆盖配置文件。
 
-######16、更多版本[下载](http://pan.baidu.com/s/1eQmwv2E#path=%252Flinux%252Fweb_tool)
+16、更多版本[下载](http://pan.baidu.com/s/1sk0AYVN#path=%252Fsoftware%252Fweb_tool)
