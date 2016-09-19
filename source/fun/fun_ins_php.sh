@@ -22,7 +22,7 @@ function fun_ins_php(){
         "tar jxf ${php_pack_name}"
         "cd ${php_pack_folder}"
         "mkdir -p ${php_log_folder}"
-        "./configure --prefix=${php_ins_prefix} --enable-fpm --with-fpm-user=www --with-fpm-group=wwww --with-config-file-path=${php_etc_folder} --enable-ftp --enable-zip --enable-sockets --enable-soap --enable-pcntl --enable-mbstring --enable-calendar --enable-exif --with-gd --with-curl --with-jpeg-dir --with-png-dir --with-openssl=${url_install_base}openssl --with-zlib --with-zlib-dir=${url_install_base}zlib --with-xmlrpc --with-libxml-dir --with-freetype-dir --with-mcrypt=${url_install_base}libmcrypt --with-bz2 --with-pdo-mysql=mysqlnd --with-mysqli=mysqlnd"
+        "./configure --prefix=${php_ins_prefix} --enable-fpm --with-fpm-user=www --with-fpm-group=wwww --with-config-file-path=${php_etc_folder} --enable-ftp --enable-zip --enable-sockets --enable-soap --enable-pcntl --enable-mbstring --enable-calendar --enable-exif --enable-bcmath --with-gd --with-curl --with-jpeg-dir --with-png-dir --with-openssl=${url_install_base}openssl --with-zlib --with-zlib-dir=${url_install_base}zlib --with-xmlrpc --with-libxml-dir --with-freetype-dir --with-mcrypt=${url_install_base}libmcrypt --with-bz2 --with-pdo-mysql=mysqlnd --with-mysqli=mysqlnd"
         "make"
         "make install"
         "if [ ! -f "${php_etc_folder}/php.ini" ] ; then (cp php.ini-development ${php_etc_folder}/php.ini) fi"
