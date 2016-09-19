@@ -28,6 +28,7 @@ function fun_ins_php(){
         "if [ ! -f "${php_etc_folder}/php.ini" ] ; then (cp php.ini-development ${php_etc_folder}/php.ini) fi"
         "if [ ! -f "${php_ins_prefix}/etc/php-fpm.conf" ] ; then (cp sapi/fpm/php-fpm.conf ${php_ins_prefix}/etc/php-fpm.conf) fi"
         "if [ ! -f "${php_etc_folder}/php-fpm.conf" ] ; then (cp ${php_ins_prefix}/etc/php-fpm.conf ${php_etc_folder}/php-fpm.conf) fi"
+        "if [ ! -f "${php_ins_prefix}/etc/php-fpm.d/www.conf" ] ; then (mv ${php_ins_prefix}/etc/php-fpm.d/www.conf.default ${php_ins_prefix}/etc/php-fpm.d/www.conf) fi"
         "if [ -f "${php_sbin_prefix}" ] ; then (rm -rf ${php_sbin_prefix}) fi"
         "ln -s ${php_ins_prefix}/bin/php ${php_sbin_prefix}"
         "if [ -f "${url_sbin_base}phpize" ] ; then (rm -rf ${url_sbin_base}phpize) fi"

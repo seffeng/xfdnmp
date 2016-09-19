@@ -243,6 +243,7 @@ shl_exec "if [ ! -f /usr/bin/aclocal-1.15 ] ; then (ln -s /usr/bin/aclocal /usr/
 shl_exec "mkdir -p $url_install_base";
 shl_exec "mkdir -p $url_config_base";
 shl_exec "mkdir -p $url_data_base";
+shl_exec "mkdir -p ${url_data_base}wwwroot";
 shl_exec "mkdir -p $url_path_base";
 shl_exec "mkdir -p ${url_path_base}tmp ${url_path_base}logs";
 shl_exec "chmod 777 ${url_path_base}tmp ${url_path_base}logs";
@@ -252,7 +253,7 @@ println "if [ ! -f /usr/bin/automake-1.15 ] ; then (ln -s /usr/bin/automake /usr
 println "if [ ! -f /usr/bin/aclocal-1.15 ] ; then (ln -s /usr/bin/aclocal /usr/bin/aclocal-1.15) fi" purple;
 println "mkdir -p $url_install_base" purple;
 println "mkdir -p $url_config_base" purple;
-println "mkdir -p $url_data_base" purple;
+println "mkdir -p ${url_data_base}wwwroot" purple;
 println "mkdir -p $url_path_base" purple;
 println "mkdir -p ${url_path_base}tmp ${url_path_base}logs" purple;
 println "chmod 777 ${url_path_base}tmp ${url_path_base}logs" purple;
