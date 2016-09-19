@@ -7,7 +7,7 @@
 /usr/bin/php-fpm
 
 # 启动 mysql
-/etc/init.d/mysqld start
+/etc/init.d/mysql.server start
 
 # 启动 memcached
 # /srv/websrv/config/memcached/start.sh

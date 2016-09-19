@@ -7,7 +7,7 @@
 /srv/websrv/config/php/stop.sh
 
 # 停止 mysql
-/etc/init.d/mysqld stop
+/etc/init.d/mysql.server stop
 
 # 停止 memcached
 # /srv/websrv/config/memcached/stop.sh
