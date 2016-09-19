@@ -23,6 +23,7 @@ function fun_ins_nginx(){
     fi
     ##依次命令
     nginx_shl=(
+        "cd ${url_software_base}"
         "tar -zxf ${luajit_pack_name}"
         "cd ${luajit_pack_folder}"
         "make"

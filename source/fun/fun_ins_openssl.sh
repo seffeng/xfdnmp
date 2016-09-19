@@ -5,13 +5,13 @@ function fun_ins_openssl(){
     ##是否调试模式
     openssl_is_debug=${is_debug};
     openssl_ins_prefix="${url_install_base}openssl";
-	if [ 0 = $openssl_is_debug ]; then 
-		if [ -f "${openssl_ins_prefix}/bin/openssl" ] ; then 
-			println "-- OPENSSL IS INSTALL";
-			println "-- REINSTALL PLEASE DELETE [rm -rf ${openssl_ins_prefix}/bin/openssl]" red;
-			return 0;
-		fi
-	fi
+    if [ 0 = $openssl_is_debug ]; then 
+        if [ -f "${openssl_ins_prefix}/bin/openssl" ] ; then 
+            println "-- OPENSSL IS INSTALL";
+            println "-- REINSTALL PLEASE DELETE [rm -rf ${openssl_ins_prefix}/bin/openssl]" red;
+            return 0;
+        fi
+    fi
     ##依次命令
     openssl_shl=(
         "apt-get -y install perl libssl-dev"

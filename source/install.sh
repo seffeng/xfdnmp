@@ -195,6 +195,7 @@ to_argv;
 
 if [ 1 = $ins_mysql ]; then
 ins_cmake=1;
+ins_openssl=1;
 fi
 
 if [ 1 = $ins_nginx ]; then
@@ -258,6 +259,11 @@ println "mkdir -p $url_path_base" purple;
 println "mkdir -p ${url_path_base}tmp ${url_path_base}logs" purple;
 println "chmod 777 ${url_path_base}tmp ${url_path_base}logs" purple;
 fi
+#安装OPENSSL
+if [ 1 = $ins_openssl ]; then
+. ${url_software_base}fun/fun_ins_openssl.sh;
+fun_ins_openssl;
+fi
 #安装CMAKE
 if [ 1 = $ins_cmake ]; then
 . ${url_software_base}fun/fun_ins_cmake.sh;
@@ -277,11 +283,6 @@ fi
 if [ 1 = $ins_zlib ]; then
 . ${url_software_base}fun/fun_ins_zlib.sh;
 fun_ins_zlib;
-fi
-#安装OPENSSL
-if [ 1 = $ins_openssl ]; then
-. ${url_software_base}fun/fun_ins_openssl.sh;
-fun_ins_openssl;
 fi
 #安装NGINX
 if [ 1 = $ins_nginx ]; then
