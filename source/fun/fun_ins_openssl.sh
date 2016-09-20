@@ -21,6 +21,8 @@ function fun_ins_openssl(){
         "./config --prefix=${openssl_ins_prefix}"
         "make"
         "make install"
+        "if [ -f "${url_sbin_base}openssl" ] ; then (rm -rf ${url_sbin_base}openssl) fi"
+        "ln -s ${openssl_ins_prefix}/bin/openssl ${url_sbin_base}openssl"
     );
     openssl_shl_len=${#openssl_shl[*]};
     i=0;
