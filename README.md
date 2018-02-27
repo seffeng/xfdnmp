@@ -102,4 +102,4 @@ apt-get -y install python
     16.2 修改 /install.sh 里对应的软件版本；
     16.3 mysql 需下载 mysql-boost 版本，同时修改 install.sh 里的 boost_pack_folder 和 mysql_pack_folder。
 
-17、更多版本[下载](http://pan.baidu.com/s/1sk0AYVN#path=%252Fsoftware%252Fweb_tool)
+17、更多版本[下载](https://pan.baidu.com/s/1i5PA2yT#list/path=%2Fsoftware%2Fweb_tool)
